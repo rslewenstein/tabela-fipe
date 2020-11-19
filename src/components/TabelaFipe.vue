@@ -8,13 +8,14 @@
             label="Veículo"
         ></v-select> -->
 
-    <v-btn
-        small
-        color="primary"
-        dark
+    <!-- <v-btn
+      class="button"
+      small
+      color="primary"
+      dark
     >
         Checar
-    </v-btn>
+    </v-btn> -->
 
     <v-simple-table class="table">
     <template v-slot:default>
@@ -57,7 +58,7 @@ export default {
         Vue.axios.get('https://parallelum.com.br/fipe/api/v1/carros/marcas')
         .then((resp) => {
             this.list=resp.data;
-            console.warn(resp.data)
+            // console.warn(resp.data)
         })
     }
 }
@@ -74,5 +75,8 @@ h1{
     margin-left: 30%;
     margin-top: 5%;
     padding: 10px;
+}
+.button{
+  text-align: center;
 }
 </style>
