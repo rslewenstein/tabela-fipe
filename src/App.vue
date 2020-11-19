@@ -2,12 +2,13 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
-      dark
+      color="gray"
+     
     >
-      <div class="d-flex align-center">
-        
+     <div class="app-title">
+        <v-text>Tabela Fipe</v-text>
       </div>
+
 
       <v-spacer></v-spacer>
 
@@ -34,3 +35,10 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+.app-title{
+  font-size: 40px;
+  font-family: fantasy;
+}
+</style>

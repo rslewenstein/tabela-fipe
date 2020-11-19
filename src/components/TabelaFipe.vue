@@ -1,31 +1,31 @@
 <template>
     <div class="main">
-    <h1>Tabela Fipe</h1>
+    <v-select 
+      class="select-veiculos"
+      v-model="select"
+      :items="veiculos"
+      label="Tipo Veículo"
+    ></v-select>
 
-    <!-- <v-select 
-            v-model="select"
-            :items="veiculos"
-            label="Veículo"
-        ></v-select> -->
-
-    <!-- <v-btn
+    <v-btn
       class="button"
       small
       color="primary"
       dark
+      @click="listar"
     >
-        Checar
-    </v-btn> -->
+        Listar
+    </v-btn>
 
     <v-simple-table class="table">
     <template v-slot:default>
       <thead>
         <tr>
           <th class="text-left">
-            Nome
+            Código
           </th>
           <th class="text-left">
-            Código
+            Nome
           </th>
         </tr>
       </thead>
@@ -34,8 +34,8 @@
           v-for="item in list" 
           v-bind:key="item.id"
         >
-          <td>{{ item.nome }}</td>
           <td>{{ item.codigo }}</td>
+          <td>{{ item.nome }}</td>
         </tr>
       </tbody>
     </template>
@@ -52,23 +52,35 @@ Vue.use(VueAxios, axios)
 
 export default {
     data(){
-        return {list:undefined}
+        return {
+          list:undefined,
+          select: 'carros',
+          veiculos: [
+          'carros',
+          'motos',
+          'caminhoes'
+        ]
+        }
     },
-    mounted(){
-        Vue.axios.get('https://parallelum.com.br/fipe/api/v1/carros/marcas')
+    methods: {
+      listar(){
+        var veiculo = this.select
+        Vue.axios.get('https://parallelum.com.br/fipe/api/v1/'+ veiculo +'/marcas')
         .then((resp) => {
-            this.list=resp.data;
-            // console.warn(resp.data)
+             this.list=resp.data;
         })
+      }
     }
+    // mounted(){
+    //     Vue.axios.get('https://parallelum.com.br/fipe/api/v1/caminhoes/marcas')
+    //     .then((resp) => {
+    //         this.list=resp.data;
+    //     })
+    // }
 }
 </script>
 
 <style scoped>
-h1{
-    text-align: center;
-}
-
 .table{
     max-width: 600px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -78,5 +90,11 @@ h1{
 }
 .button{
   text-align: center;
+  margin-left: 47%;
+}
+.select-veiculos{
+  width: 200px;
+  margin-left: 43%;
+  margin-top: 2%;
 }
 </style>
