@@ -1,23 +1,44 @@
 <template>
     <div class="main">
-        <h1>Tabela Fipe</h1>
-        <table border="1px">
-            <tr>
-                <td>Nome</td>
-                <td>Código</td>
-            </tr>
-            <tr v-for="item in list" v-bind:key="item.id">
-                <td>{{item.nome}}</td>
-                <td>{{item.codigo}}</td>
-            </tr>
-        </table>
-        <v-btn
-            small
-            color="primary"
-            dark
+    <h1>Tabela Fipe</h1>
+
+    <!-- <v-select 
+            v-model="select"
+            :items="veiculos"
+            label="Veículo"
+        ></v-select> -->
+
+    <v-btn
+        small
+        color="primary"
+        dark
+    >
+        Checar
+    </v-btn>
+
+    <v-simple-table class="table">
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">
+            Nome
+          </th>
+          <th class="text-left">
+            Código
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="item in list" 
+          v-bind:key="item.id"
         >
-            Checar
-        </v-btn>
+          <td>{{ item.nome }}</td>
+          <td>{{ item.codigo }}</td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
     </div>
 </template>
 
@@ -43,7 +64,15 @@ export default {
 </script>
 
 <style scoped>
-.main{
+h1{
     text-align: center;
+}
+
+.table{
+    max-width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-left: 30%;
+    margin-top: 5%;
+    padding: 10px;
 }
 </style>
