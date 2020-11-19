@@ -6,7 +6,7 @@
      
     >
      <div class="app-title">
-        <v-text>Tabela Fipe</v-text>
+        Tabela Fipe
       </div>
 
 

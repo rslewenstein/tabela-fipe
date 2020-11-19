@@ -33,6 +33,7 @@
         <tr
           v-for="item in list" 
           v-bind:key="item.id"
+          @click="listarVeiculos(select, item.codigo)"
         >
           <td>{{ item.codigo }}</td>
           <td>{{ item.nome }}</td>
@@ -40,7 +41,7 @@
       </tbody>
     </template>
   </v-simple-table>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -68,6 +69,14 @@ export default {
         Vue.axios.get('https://parallelum.com.br/fipe/api/v1/'+ veiculo +'/marcas')
         .then((resp) => {
              this.list=resp.data;
+        })
+      },
+      listarVeiculos(veic, cod){
+        console.log(veic, cod)
+        Vue.axios.get('https://parallelum.com.br/fipe/api/v1/'+veic+'/marcas/'+cod+'/modelos')
+        .then((resp) => {
+             this.list=resp.data;
+             console.log(this.list)
         })
       }
     }
