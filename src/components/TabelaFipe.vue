@@ -21,11 +21,11 @@
     <template v-slot:default>
       <thead>
         <tr>
-          <th class="text-left">
+          <th class="title-table">
             Código
           </th>
-          <th class="text-left">
-            Nome
+          <th class="title-table">
+            Fabricante
           </th>
         </tr>
       </thead>
